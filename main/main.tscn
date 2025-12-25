@@ -1,0 +1,135 @@
+[gd_scene load_steps=11 format=3 uid="uid://drkjhsbql7dwf"]
+
+[ext_resource type="Texture2D" uid="uid://ck51jisxvlu22" path="res://assets/background/sky.png" id="1_53q0u"]
+[ext_resource type="Script" uid="uid://bbbta7ae8nebv" path="res://main/main.gd" id="2_pjrb6"]
+[ext_resource type="FontFile" uid="uid://cx8cwjpauilj0" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="3_xwkvk"]
+[ext_resource type="AudioStream" uid="uid://bmg2hpdgc3ddu" path="res://assets/audio/bgm_menu.mp3" id="4_c651c"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_c651c"]
+font = ExtResource("3_xwkvk")
+font_size = 96
+font_color = Color(1.0108569, 0.5812507, 0.4986342, 1)
+outline_size = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_xwkvk"]
+font = ExtResource("3_xwkvk")
+font_size = 60
+outline_size = 2
+outline_color = Color(0, 0.14618832, 0.8537456, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3wy1v"]
+font = ExtResource("3_xwkvk")
+font_size = 48
+font_color = Color(1.0108569, 0.5812507, 0.4986342, 1)
+outline_size = 2
+
+[sub_resource type="Animation" id="Animation_c651c"]
+resource_name = "flash"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/Instruction:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.43333334, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.2), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3wy1v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/Instruction:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3wy1v"]
+_data = {
+&"RESET": SubResource("Animation_3wy1v"),
+&"flash": SubResource("Animation_c651c")
+}
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_pjrb6")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_53q0u")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="GameName" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "TAPPY
+PLANE"
+label_settings = SubResource("LabelSettings_c651c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Instruction" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Press SPACE 
+to play"
+label_settings = SubResource("LabelSettings_xwkvk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="HighScoreMessageLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Highscore"
+label_settings = SubResource("LabelSettings_3wy1v")
+
+[node name="Score" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "000"
+label_settings = SubResource("LabelSettings_3wy1v")
+
+[node name="BGMMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_c651c")
+autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3wy1v")
+}
+autoplay = "flash"

@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfewat8v07575"]
+
+[ext_resource type="PackedScene" uid="uid://cuudip6dvco2x" path="res://pipes/pipe.tscn" id="1_52jf4"]
+[ext_resource type="Script" uid="uid://c0e4jx48xqgs" path="res://pipes/pipes.gd" id="1_v24c4"]
+[ext_resource type="AudioStream" uid="uid://cg3b3luqjsqnw" path="res://assets/audio/score.wav" id="3_bircr"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_v24c4"]
+distance = -46.0
+
+[node name="Pipes" type="Node2D"]
+script = ExtResource("1_v24c4")
+
+[node name="UpperPipe" parent="." instance=ExtResource("1_52jf4")]
+
+[node name="LowerPipe" parent="." instance=ExtResource("1_52jf4")]
+position = Vector2(0, -180)
+rotation = 3.1415927
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(123, -80)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-45, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 4.712389
+shape = SubResource("WorldBoundaryShape2D_v24c4")
+
+[node name="ScoreSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_bircr")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_passed_pipe"]

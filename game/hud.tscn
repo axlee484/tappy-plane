@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://tid4ogjvys4b"]
+
+[ext_resource type="Script" uid="uid://cvyv2uwd8ewf4" path="res://game/hud.gd" id="1_448qv"]
+[ext_resource type="FontFile" uid="uid://cx8cwjpauilj0" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="1_d8ggh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_448qv"]
+font = ExtResource("1_d8ggh")
+font_size = 48
+font_color = Color(1.0108569, 0.5812507, 0.4986342, 1)
+outline_size = 2
+
+[node name="Hud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_448qv")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+
+[node name="ScoreLabel" type="Label" parent="MarginContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_448qv")
+horizontal_alignment = 1
+vertical_alignment = 1

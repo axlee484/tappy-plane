@@ -1,0 +1,89 @@
+[gd_scene load_steps=10 format=3 uid="uid://dw8j2b02nr3jd"]
+
+[ext_resource type="Texture2D" uid="uid://cbnxd1la7o6lv" path="res://assets/plane/planes_sheet.png" id="1_fvwsd"]
+[ext_resource type="Script" uid="uid://d0dpujb6k58wk" path="res://plane/plane_cb.gd" id="1_xvmmv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xvmmv"]
+atlas = ExtResource("1_fvwsd")
+region = Rect2(0, 0, 88, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tg0u3"]
+atlas = ExtResource("1_fvwsd")
+region = Rect2(88, 0, 88, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fq2sh"]
+atlas = ExtResource("1_fvwsd")
+region = Rect2(176, 0, 88, 73)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ghdcb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xvmmv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tg0u3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fq2sh")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 30.0
+}]
+
+[sub_resource type="Animation" id="Animation_tg0u3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_xvmmv"]
+resource_name = "wobble"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333333, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.22689280275926285, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fq2sh"]
+_data = {
+&"RESET": SubResource("Animation_tg0u3"),
+&"wobble": SubResource("Animation_xvmmv")
+}
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["plane"]]
+script = ExtResource("1_xvmmv")
+GRAVITY = 1000
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_ghdcb")
+animation = &"fly"
+autoplay = "fly"
+frame_progress = 0.0054601994
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-30, -17, -15, -13, -7, -13, -8, -18, -15, -21, -13, -25, 18, -25, 21, -22, 17, -18, 11, -13, 21, -11, 25, 0, 27, 0, 27, -10, 30, -10, 30, 16, 27, 16, 27, 7, 24, 8, 21, 17, 11, 24, -9, 16, -13, 19, -17, 15, -12, 9, -24, -5, -29, -7)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_fq2sh")
+}

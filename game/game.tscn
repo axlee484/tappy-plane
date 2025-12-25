@@ -1,0 +1,65 @@
+[gd_scene load_steps=11 format=3 uid="uid://b0gfpntik4ji1"]
+
+[ext_resource type="Script" uid="uid://b54j3l48dhy4p" path="res://game/game.gd" id="1_h7iqs"]
+[ext_resource type="PackedScene" uid="uid://dw8j2b02nr3jd" path="res://plane/plane_cb.tscn" id="1_l1rk1"]
+[ext_resource type="PackedScene" uid="uid://bfewat8v07575" path="res://pipes/pipes.tscn" id="2_4fuuu"]
+[ext_resource type="Texture2D" uid="uid://yteadpkfgcq1" path="res://assets/background/rocks_2.png" id="2_vasa2"]
+[ext_resource type="PackedScene" uid="uid://dnckqoamtge3c" path="res://game_over/game_over.tscn" id="5_dxrkv"]
+[ext_resource type="AudioStream" uid="uid://c68lnhnav2fv2" path="res://assets/audio/engine.mp3" id="6_u5opy"]
+[ext_resource type="AudioStream" uid="uid://oyhlpfmn57g3" path="res://assets/audio/game_over.wav" id="7_y36n6"]
+[ext_resource type="PackedScene" uid="uid://tid4ogjvys4b" path="res://game/hud.tscn" id="8_y36n6"]
+[ext_resource type="PackedScene" uid="uid://b210wfk65p6pw" path="res://background/background.tscn" id="9_l8g03"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vasa2"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_h7iqs")
+pipes_scene = ExtResource("2_4fuuu")
+
+[node name="ParallexBackground" parent="." instance=ExtResource("9_l8g03")]
+
+[node name="BackgroundSprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(243, 362)
+texture = ExtResource("2_vasa2")
+
+[node name="PlaneCB" parent="." instance=ExtResource("1_l1rk1")]
+position = Vector2(50, 452)
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(0, 854)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+shape = SubResource("WorldBoundaryShape2D_vasa2")
+
+[node name="PipesContainer" type="Node" parent="."]
+
+[node name="UpperPosition" type="Marker2D" parent="PipesContainer"]
+position = Vector2(700, 300)
+
+[node name="LowerPosition" type="Marker2D" parent="PipesContainer"]
+position = Vector2(700, 500)
+
+[node name="Timer" type="Timer" parent="PipesContainer"]
+wait_time = 1.2
+autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameOver" parent="CanvasLayer" instance=ExtResource("5_dxrkv")]
+visible = false
+
+[node name="SoundContainer" type="Node" parent="."]
+
+[node name="EngineSound" type="AudioStreamPlayer" parent="SoundContainer"]
+stream = ExtResource("6_u5opy")
+autoplay = true
+
+[node name="GameOverSound" type="AudioStreamPlayer" parent="SoundContainer"]
+stream = ExtResource("7_y36n6")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="Hud" parent="CanvasLayer2" instance=ExtResource("8_y36n6")]
+
+[connection signal="timeout" from="PipesContainer/Timer" to="." method="_on_timer_timeout"]
