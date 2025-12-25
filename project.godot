@@ -24,8 +24,7 @@ GameManager="*res://singletons/game_manager.gd"
 window/size/viewport_width=650
 window/size/viewport_height=854
 window/size/mode=3
-window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
+window/stretch/mode="viewport"
 window/handheld/orientation=1
 
 [dotnet]
