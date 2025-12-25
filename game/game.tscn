@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b0gfpntik4ji1"]
+[gd_scene load_steps=12 format=3 uid="uid://b0gfpntik4ji1"]
 
 [ext_resource type="Script" uid="uid://b54j3l48dhy4p" path="res://game/game.gd" id="1_h7iqs"]
 [ext_resource type="PackedScene" uid="uid://dw8j2b02nr3jd" path="res://plane/plane_cb.tscn" id="1_l1rk1"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://b210wfk65p6pw" path="res://background/background.tscn" id="9_l8g03"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vasa2"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_l8g03"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_h7iqs")
@@ -32,16 +34,22 @@ position = Vector2(0, 854)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
 shape = SubResource("WorldBoundaryShape2D_vasa2")
 
+[node name="Ceiling" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
+rotation = 3.1415927
+shape = SubResource("WorldBoundaryShape2D_l8g03")
+
 [node name="PipesContainer" type="Node" parent="."]
 
 [node name="UpperPosition" type="Marker2D" parent="PipesContainer"]
-position = Vector2(700, 300)
+position = Vector2(700, 200)
 
 [node name="LowerPosition" type="Marker2D" parent="PipesContainer"]
-position = Vector2(700, 500)
+position = Vector2(700, 600)
 
 [node name="Timer" type="Timer" parent="PipesContainer"]
-wait_time = 1.2
+wait_time = 2.0
 autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

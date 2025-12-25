@@ -33,6 +33,6 @@ func _on_plane_died():
 
 func _on_scored():
 	score+=1
-	print(score)
+	#print(score)
 	
 	

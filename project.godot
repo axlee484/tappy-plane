@@ -24,6 +24,10 @@ GameManager="*res://singletons/game_manager.gd"
 window/size/viewport_width=650
 window/size/viewport_height=854
 
+[dotnet]
+
+project/assembly_name="tappy-plane"
+
 [global_group]
 
 plane=""

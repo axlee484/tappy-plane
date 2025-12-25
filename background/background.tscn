@@ -1,58 +1,70 @@
-[gd_scene load_steps=7 format=3 uid="uid://b210wfk65p6pw"]
+[gd_scene load_steps=9 format=3 uid="uid://b210wfk65p6pw"]
 
 [ext_resource type="Texture2D" uid="uid://dsjx21s5tbpxe" path="res://assets/background/clouds_1.png" id="1_3phoi"]
+[ext_resource type="Script" uid="uid://d4k8wjo0mkgkv" path="res://background/parallax_background.gd" id="1_p8qmt"]
+[ext_resource type="Script" uid="uid://ctf8h8li4dyho" path="res://background/parallax_layer.gd" id="2_eva80"]
 [ext_resource type="Texture2D" uid="uid://bqtr5hboy2vlq" path="res://assets/background/clouds_2.png" id="2_omdhl"]
 [ext_resource type="Texture2D" uid="uid://m6ivg1vf6n8q" path="res://assets/background/clouds_3.png" id="3_8fd00"]
+[ext_resource type="Texture2D" uid="uid://ck51jisxvlu22" path="res://assets/background/sky.png" id="3_r0sni"]
 [ext_resource type="Texture2D" uid="uid://brhihae3ja4kj" path="res://assets/background/clouds_4.png" id="4_lc8rw"]
-[ext_resource type="Texture2D" uid="uid://c87m5unndvgfi" path="res://assets/background/rocks_1.png" id="5_2duwg"]
 [ext_resource type="Texture2D" uid="uid://yteadpkfgcq1" path="res://assets/background/rocks_2.png" id="6_gxljl"]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="ParallaxLayer" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0.2, 0.2)
-scroll_offset = Vector2(268, 387)
-repeat_size = Vector2(1024, 0)
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("1_p8qmt")
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+script = ExtResource("2_eva80")
+texture = ExtResource("3_r0sni")
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+script = ExtResource("2_eva80")
 texture = ExtResource("1_3phoi")
+scroll_scale = 0.2
 
-[node name="ParallaxLayer2" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0.4, 0)
-scroll_offset = Vector2(268, 387)
-repeat_size = Vector2(1024, 0)
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+centered = false
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer2"]
-texture = ExtResource("2_omdhl")
-
-[node name="ParallaxLayer3" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0.6, 0)
-scroll_offset = Vector2(268, 387)
-repeat_size = Vector2(1024, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer3"]
-texture = ExtResource("3_8fd00")
-
-[node name="ParallaxLayer4" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0.8, 0)
-scroll_offset = Vector2(268, 387)
-repeat_size = Vector2(1024, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer4"]
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+script = ExtResource("2_eva80")
 texture = ExtResource("4_lc8rw")
+scroll_scale = 0.3
 
-[node name="ParallaxLayer5" type="Parallax2D" parent="."]
-scroll_scale = Vector2(1, 0)
-scroll_offset = Vector2(268, 387)
-repeat_size = Vector2(1024, 0)
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+centered = false
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer5"]
-texture = ExtResource("5_2duwg")
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+script = ExtResource("2_eva80")
+texture = ExtResource("3_8fd00")
+scroll_scale = 0.4
 
-[node name="ParallaxLayer6" type="Parallax2D" parent="."]
-scroll_scale = Vector2(1.2, 0)
-scroll_offset = Vector2(268, 387)
-repeat_size = Vector2(1024, 0)
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
+centered = false
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer6"]
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+script = ExtResource("2_eva80")
 texture = ExtResource("6_gxljl")
+scroll_scale = 0.8
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
+centered = false
+
+[node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground"]
+script = ExtResource("2_eva80")
+texture = ExtResource("2_omdhl")
+scroll_scale = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer6"]
+centered = false
+
+[node name="ParallaxLayer7" type="ParallaxLayer" parent="ParallaxBackground"]
+script = ExtResource("2_eva80")
+texture = ExtResource("6_gxljl")
+scroll_scale = 1.2
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer7"]
+centered = false
