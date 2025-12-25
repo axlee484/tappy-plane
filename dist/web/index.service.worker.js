@@ -4,7 +4,7 @@
 // Incrementing CACHE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
 /** @type {string} */
-const CACHE_VERSION = '1766692546|3783293582';
+const CACHE_VERSION = '1766692981|4218242517';
 /** @type {string} */
 const CACHE_PREFIX = 'tappy-plane-sw-cache-';
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;
