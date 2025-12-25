@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://xs6aucngby43"
-path="res://.godot/imported/tappy-plane.512x512.png-309ae53c5f9300e29a66eac4eefdf6b2.ctex"
+path="res://.godot/imported/tappy-plane.512x512.png-2f4d6bbfefe10266f083c922a9858309.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://export/web/tappy-plane.512x512.png"
-dest_files=["res://.godot/imported/tappy-plane.512x512.png-309ae53c5f9300e29a66eac4eefdf6b2.ctex"]
+source_file="res://docs/build/web/tappy-plane.512x512.png"
+dest_files=["res://.godot/imported/tappy-plane.512x512.png-2f4d6bbfefe10266f083c922a9858309.ctex"]
 
 [params]
 
