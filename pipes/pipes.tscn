@@ -11,10 +11,10 @@ distance = -46.0
 script = ExtResource("1_v24c4")
 
 [node name="UpperPipe" parent="." instance=ExtResource("1_52jf4")]
+position = Vector2(0, -150)
+rotation = 3.1415927
 
 [node name="LowerPipe" parent="." instance=ExtResource("1_52jf4")]
-position = Vector2(0, -180)
-rotation = 3.1415927
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(123, -80)
